@@ -18,7 +18,7 @@ if [ ${INNER_PORT} == '1234' ]; then
     curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/rulesets/${RULE}" \
     -H "Authorization: Bearer ${AUTH}" \
     -H "Content-Type:application/json" \
-    --data "{\"name\": \"default\",  \"kind\": \"zone\",  \"phase\": \"http_request_dynamic_redirect\",  \"rules\": [{\"description\": \"natter${INNER_PORT}\",\"expression\": \"(http.host eq \\\" ${PREFIX}.${DOMAIN} \\\")\",\"action\": \"redirect\",\"action_parameters\": {\"from_value\": {\"status_code\": 302,\"preserve_query_string\": true,\"target_url\": {\"value\": \"http://${DDNS_DOMAIN}:${PORT}/\"}}},\"enabled\": true}]}" 2 >/dev/null >/dev/null
+    --data "{\"name\": \"default\",  \"kind\": \"zone\",  \"phase\": \"http_request_dynamic_redirect\",  \"rules\": [{\"description\": \"natter${INNER_PORT}\",\"expression\": \"(http.host eq \\\"${PREFIX}.${DOMAIN}\\\")\",\"action\": \"redirect\",\"action_parameters\": {\"from_value\": {\"status_code\": 302,\"preserve_query_string\": true,\"target_url\": {\"value\": \"http://${DDNS_DOMAIN}:${PORT}/\"}}},\"enabled\": true}]}" 2 >/dev/null >/dev/null
     JUMP='1'
     echo 'Clean Rule Successful!'
     echo 'ADD '${PREFIX}'.'${DOMAIN}'->'${DDNS_DOMAIN}':'${PORT}' Successful!'
@@ -52,6 +52,6 @@ if[ ${JUMP} == '0' ]；then
     curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${ZONE}/rulesets/${RULE}/rules" \
     -H "Authorization: Bearer ${AUTH}" \
     -H "Content-Type:application/json" \
-    --data "{\"description\": \"natter${INNER_PORT}\",\"expression\": \"(http.host eq \\\" ${PREFIX}.${DOMAIN} \\\")\",\"action\": \"redirect\",\"action_parameters\": {\"from_value\": {\"status_code\": 302,\"preserve_query_string\": true,\"target_url\": {\"value\": \"http://${DDNS_DOMAIN}:${PORT}/\"}}},\"enabled\": true}" >/dev/null
+    --data "{\"description\": \"natter${INNER_PORT}\",\"expression\": \"(http.host eq \\\"${PREFIX}.${DOMAIN}\\\")\",\"action\": \"redirect\",\"action_parameters\": {\"from_value\": {\"status_code\": 302,\"preserve_query_string\": true,\"target_url\": {\"value\": \"http://${DDNS_DOMAIN}:${PORT}/\"}}},\"enabled\": true}" >/dev/null
     echo 'ADD '${PREFIX}'.'${DOMAIN}'->'${DDNS_DOMAIN}':'${PORT}' Successful!'
 fi
