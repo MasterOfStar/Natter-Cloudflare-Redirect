@@ -41,7 +41,9 @@ elif [ ${INNER_PORT} == '55555' ]; then
     qb_cookie=$(curl -s -i --header "Referer: $qb_ip:$qb_web_port" --data "username=$qb_username&password=$qb_password" $qb_ip:$qb_web_port/api/v2/auth/login | grep -i set-cookie | cut -c13-48)
     curl -X POST -b "$qb_cookie" -d 'json={"listen_port":"'${PORT}'"}' "$qb_ip:$qb_web_port/api/v2/app/setPreferences"
     # openwrt Firewall 
-    iptables -t nat -I PREROUTING -i pppoe-wan -p tcp --dport ${INNER_PORT} -j DNAT --to-destination ${qb_ip}:${PORT}
+    # iptables -t nat -I PREROUTING -i pppoe-wan -p tcp --dport ${INNER_PORT} -j DNAT --to-destination ${qb_ip}:${PORT}
+    # OR use uci set Firewall
+    # uci set firewall.xxxxxx.dest_port=${PORT}
     echo "Update qBittorrent listen port to ${PORT}..."
 fi
 # Explorer -> ${PREFIX}.Domain == 302 to DDNS_DOMAIN:PORT
