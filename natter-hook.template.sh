@@ -1,5 +1,6 @@
 #!/bin/sh
 # required jq sed curl
+# In the natterv2 protocol="$1"; private_ip="$2"; private_port="$3"; public_ip="$4"; public_port="$5"
 
 # ENV
 outter_ip=${4}
