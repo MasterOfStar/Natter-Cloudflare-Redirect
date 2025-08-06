@@ -3,13 +3,11 @@
 # In the natterv2 protocol="$1"; private_ip="$2"; private_port="$3"; public_ip="$4"; public_port="$5"
 
 # ENV
-outter_ip=${4}
-outter_port=${5}
+outer_ip=${4}
+outer_port=${5}
 CLOUDFLARE_ZONE_ID=''
 CLOUDFLARE_AUTH_KEY=''
-CLOUDFLARE_API_KEY=''
 CLOUDFLARE_RULE_NAME='test8089'
-CLOUDFLARE_EMAIL='for@example.com'
 CLOUDFLARE_RULE_FORM_URL='http://a.test.com'
 CLOUDFLARE_RULE_TARGET_URL='http://b.test.com/'
 
@@ -41,7 +39,6 @@ echo $body >> 1.json
 # final: In example Cloudflare will redirect http://a.test.com/* to  http://b.test.com:8089/  . In the rule, ${1} = *   .
 curl -s --retry 10 --request PUT \
   --url https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/rulesets/$CLOUDFLARE_RULESET_ID \
-  --header "X-Auth-Key: $CLOUDFLARE_API_KEY" \
-  --header "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+  --header "Authorization: Bearer $CLOUDFLARE_AUTH_KEY" \
   --header 'Content-Type: application/json' \
   --data "$body"
