@@ -39,8 +39,6 @@ sudo yum install jq sed curl     # CentOS
 ```bash
 CLOUDFLARE_ZONE_ID='你的区域ID'           # Cloudflare 区域ID
 CLOUDFLARE_AUTH_KEY='Bearer令牌'         # API 认证密钥
-CLOUDFLARE_API_KEY='全局API密钥'         # 账户API密钥
-CLOUDFLARE_EMAIL='你的账号邮箱'            # Cloudflare 注册邮箱
 
 # 可选自定义项（如需更改规则名/URL）
 CLOUDFLARE_RULE_NAME='test8089'          # 要修改的规则名
